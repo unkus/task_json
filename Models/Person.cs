@@ -1,3 +1,6 @@
+using System.Text.Json.Serialization;
+using Converters;
+
 namespace Models;
 
 class Person
@@ -10,9 +13,11 @@ class Person
 	public String[] CreditCardNumbers { get; set; }
 	public Int32 Age { get; set; }
 	public String[] Phones { get; set; }
+	[JsonConverter(typeof(BirthDateJsonConverter))]
 	public Int64 BirthDate { get; set; }
 	public Double Salary { get; set; }
 	public Boolean IsMarred { get; set; }
+	[JsonConverter(typeof(GenderJsonConverter))]
 	public Gender Gender { get; set; }
 	public Child[] Children { get; set; }	
 }
