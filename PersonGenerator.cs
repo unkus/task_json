@@ -133,7 +133,7 @@ class PersonGenerator
 
     private string[] GeneratePhones()
     {
-        int count = _random.Next(4); // Допустим у человека может быть не более 4 телефонов
+        int count = _random.Next(5); // Допустим у человека может быть не более 4 телефонов
         string[] phones = count > 0 ? new string[count] : Array.Empty<string>();
 
         for (int i = 0; i < count; i++)
@@ -141,7 +141,7 @@ class PersonGenerator
             phones[i] = String.Format("+7 ({0:D3}) {1:D3}-{2:D2}-{3:D2}", _random.Next(1000), _random.Next(1000), _random.Next(100), _random.Next(100));
         }
 
-        return Array.Empty<string>();
+        return phones;
     }
 
     private string GetRandomName(Gender gender)
