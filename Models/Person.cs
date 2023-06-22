@@ -17,7 +17,6 @@ class Person
 	public Int64 BirthDate { get; set; }
 	public Double Salary { get; set; }
 	public Boolean IsMarred { get; set; }
-	[JsonConverter(typeof(GenderJsonConverter))]
 	public Gender Gender { get; set; }
 	public Child[] Children { get; set; }	
 }

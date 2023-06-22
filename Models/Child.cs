@@ -10,6 +10,5 @@ class Child
 	public String LastName { get; set; }
 	[JsonConverter(typeof(BirthDateJsonConverter))]
 	public Int64 BirthDate { get; set; }
-	[JsonConverter(typeof(GenderJsonConverter))]
 	public Gender Gender { get; set; }
 }
