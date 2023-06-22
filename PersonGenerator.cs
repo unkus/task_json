@@ -49,8 +49,12 @@ class PersonGenerator
         "Фёдоров"
     };
 
+    private int _lastChildId = 0;
+
     public IEnumerable<Person> GeneratePersons(int count)
     {
+        _lastChildId = 0; // Стартуем новую последовательность id для объектов Child
+
         var people = new List<Person>();
         for (int i = 0; i < count; i++)
         {
@@ -59,7 +63,7 @@ class PersonGenerator
             var birthDate = GeneratePersonBirthDate();
             var newPerson = (new Person()
             {
-                Id = _random.Next(),
+                Id = i,
                 TransportId = Guid.NewGuid(),
                 FirstName = GetRandomName(gender),
                 LastName = GetRandomSurname(gender),
@@ -80,14 +84,14 @@ class PersonGenerator
 
     private Child[] GenerateChildren(Person parent)
     {
-        int count = _random.Next(5); // Допустим не более 4 детей на человека
+        int count = _random.Next(5); // Допустим не более 4 объектов типа Child на человека
         var children = count > 0 ? new Child[count] : Array.Empty<Child>();
         for (int i = 0; i < count; i++)
         {
             var gender = (Gender)_random.Next(2);
             children[i] = new Child()
             {
-                Id = _random.Next(),
+                Id = _lastChildId++,
                 FirstName = GetRandomName(gender),
                 LastName = GetChildSurname(parent, gender),
                 BirthDate = GenerateChildBirthDate().Ticks,
